@@ -1,0 +1,17 @@
+[project]
+name = "fittedismip-gris"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Emma Marshall", email = "emarshall@rhg.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+fittedismip-gris = "fittedismip_gris.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.8.11,<0.9.0"]
+build-backend = "uv_build"
