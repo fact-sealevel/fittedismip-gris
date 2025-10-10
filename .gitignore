@@ -146,6 +146,9 @@ rabbitmq-data/
 # ActiveMQ
 activemq-data/
 
+data/
+history/
+.vscode/
 # SageMath parsed files
 *.sage.py
 

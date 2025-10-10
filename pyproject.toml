@@ -7,7 +7,16 @@ authors = [
     { name = "Emma Marshall", email = "emarshall@rhg.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "click>=8.3.0",
+    "dask>=2025.9.1",
+    "h5py>=3.14.0",
+    "netcdf4>=1.7.2",
+    "numpy>=2.3.3",
+    "ruff>=0.14.0",
+    "scipy>=1.16.2",
+    "xarray>=2025.10.1",
+]
 
 [project.scripts]
 fittedismip-gris = "fittedismip_gris.cli:main"
