@@ -16,14 +16,14 @@ of this module within the same workflow.
 """
 
 
-def FittedISMIP_preprocess_icesheet(scenario, tlm_flag, pipeline_id, climate_fname):
+def FittedISMIP_preprocess_icesheet(scenario, tlm_flag, pipeline_id, climate_file):
     # Load the two-layer model data?
     if tlm_flag != 0:
         # Load the data
         tlm_dict = Import2lmData(
             variable="surface_temperature",
             scenario=scenario,
-            climate_fname=climate_fname,
+            climate_file=climate_file,
         )
         # Filter the data if necessary
 

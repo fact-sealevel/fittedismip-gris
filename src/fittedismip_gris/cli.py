@@ -33,8 +33,8 @@ import click
     type=int,
 )
 @click.option(
-    "--climate-fname",
-    envvar="FITTEDISMIP_GRIS_CLIMATE_FNAME",
+    "--climate-file",
+    envvar="FITTEDISMIP_GRIS_CLIMATE_FILE",
     required=False,
     # default = "/Users/emmamarshall/Desktop/facts_work/facts_v2/fittedismip-gris/data/input/fittedismip.ssp585.temperature.fair.temperature_climate.nc",
     help="NetCDF4/HDF5 file containing surface temperature data",
@@ -172,7 +172,7 @@ import click
 def main(
     scenario,
     tlm_flag,
-    climate_fname,
+    climate_file,
     pipeline_id,
     gris_parm_file,
     wais_parm_file,
@@ -197,7 +197,7 @@ def main(
         scenario=scenario,
         tlm_flag=tlm_flag,
         pipeline_id=pipeline_id,
-        climate_fname=climate_fname,
+        climate_file=climate_file,
     )
     preprocess_message = f"preprocess dict keys: {preprocess_dict.keys()}"
     click.echo(preprocess_message)

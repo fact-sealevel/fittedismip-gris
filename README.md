@@ -39,4 +39,86 @@ From the root directory, create a docker image that we will use to run the appli
 docker build -t fittedismip-gris .
 ```
 
-Create a container based on the image (`docker run --rm`), mount volumes for both the input and output data sub-directories and set the working directory to the location of the app in the container (`-w`). Then, call the application, passing the desired input arguments and making sure that the paths for each input argument are relative to the mounted volumes. Pass a full path for each output file that you would like the program to write. Output objects will only be written to file if a path is passed as an input argument. In the example below, all possible outputs (local and global projections for each ice sheet) are written:
+Create a container based on the image (`docker run --rm`), mount volumes for both the input and output data sub-directories and set the working directory to the location of the app in the container (`-w`). Then, call the application, passing the desired input arguments and making sure that the paths for each input argument are relative to the mounted volumes. Pass full paths for all input files and outputs that the program will write:
+
+```shell
+docker run --rm \
+-v /Users/emmamarshall/Desktop/facts_work/facts_v2/fittedismip-gris/data/input:/mnt/fittedismip_gris_data_input:ro \
+-v /Users/emmamarshall/Desktop/facts_work/facts_v2/fittedismip-gris/data/output:/mnt/fittedismip_gris_data_out \
+fittedismip-gris \
+--climate-file /mnt/fittedismip_gris_data_input/climate.nc \
+--gris-parm-file /mnt/fittedismip_gris_data_input/FittedParms_GrIS_ALL.csv \
+--wais-parm-file /mnt/fittedismip_gris_data_input/FittedParms_AIS_WAIS.csv \
+--eais-parm-file /mnt/fittedismip_gris_data_input/FittedParms_AIS_EAIS.csv \
+--pen-parm-file /mnt/fittedismip_gris_data_input/FittedParms_AIS_PEN.csv \
+--gris-global-out-file /mnt/fittedismip_gris_data_out/gris_gslr.nc \
+--gris-local-out-file /mnt/fittedismip_gris_data_out/gris_lslr.nc \
+--locationfile /mnt/fittedismip_gris_data_input/location.lst \
+--fp-dir /mnt/fittedismip_gris_data_input/FPRINT
+```
+
+## Features
+
+```shell
+Usage: fittedismip-gris [OPTIONS]
+
+Options:
+  --scenario TEXT              Emissions scenario of interest.  [default:
+                               ssp585]
+  --tlm-flag INTEGER           Use two-layer model temperature trajectories
+                               [default = 1, do not use]  [default: 1]
+  --climate-file TEXT          NetCDF4/HDF5 file containing surface
+                               temperature data
+  --pipeline-id TEXT           Unique identifier for this instance of the
+                               module
+  --gris-parm-file TEXT        File containing Greenland ice sheet model
+                               parameters  [required]
+  --wais-parm-file TEXT        File containing West Antarctic ice sheet model
+                               parameters  [required]
+  --eais-parm-file TEXT        File containing East Antarctic ice sheet model
+                               parameters  [required]
+  --pen-parm-file TEXT         File containing Antarctic Peninsula ice sheet
+                               model parameters  [required]
+  --nsamps INTEGER             Number of samples to draw  [default: 200]
+  --pyear-start INTEGER        Projection start year  [default: 2020]
+  --pyear-end INTEGER          Projection end year  [default: 2300]
+  --pyear-step INTEGER         Projection year step  [default: 10]
+  --cyear-start INTEGER        Constant rate calculation for projections
+                               starts at this year
+  --cyear-end INTEGER          Constant rate calculation for projections ends
+                               at this year  [default: 2100]
+  --baseyear INTEGER           Year to which projections are referenced
+                               [default: 2005]
+  --rngseed INTEGER            Random number generator seed  [default: 1234]
+  --locationfile TEXT          File that contains name, id, lat, and lon of
+                               points for localization
+  --chunksize INTEGER          Number of locations to process at a time
+                               [default: 50]
+  --fp-dir TEXT                Directory that contains fingerprint files
+  --gris-global-out-file TEXT  File name for global Greenland ice sheet
+                               projections
+  --gris-local-out-file TEXT   File name for local Greenland ice sheet
+                               projections
+  --help                       Show this message and exit.
+```
+
+See this help documentation by passing the `--help` flag when running the application, for example:
+
+```shell
+docker run --rm fittedismip-gris --help
+```
+
+## Build the container locally
+You can build the container with Docker by running the following command from the repository root:
+
+```shell
+docker build -t deconto21-ais .
+```
+
+## Results
+If this module runs successfully, two netCDF files containing projections of local and global sea level change due to contributions from the Greenland Ice Sheet will appear in `./data/output`.
+
+## Support 
+Source code is available online at https://github.com/fact-sealevel/fittedismip-gris. This software is open source, available under the MIT license.
+
+Please file issues in the issue tracker at https://github.com/fact-sealevel/fittedismip-gris/issues.
