@@ -39,12 +39,12 @@ From the root directory, create a docker image that we will use to run the appli
 docker build -t fittedismip-gris .
 ```
 
-Create a container based on the image (`docker run --rm`), mount volumes for both the input and output data sub-directories and set the working directory to the location of the app in the container (`-w`). Then, call the application, passing the desired input arguments and making sure that the paths for each input argument are relative to the mounted volumes. Pass full paths for all input files and outputs that the program will write:
+Create a container based on the image (`docker run --rm`), mount volumes for both the input and output data sub-directories and set the working directory to the location of the app in the container (`-w`). Then, call the application, passing the desired input arguments and making sure that the paths for each input argument are relative to the mounted volumes. Replace the paths for each mounted volume with the location of `data/input/` and `data/output/` on your machine.
 
 ```shell
 docker run --rm \
--v /Users/emmamarshall/Desktop/facts_work/facts_v2/fittedismip-gris/data/input:/mnt/fittedismip_gris_data_input:ro \
--v /Users/emmamarshall/Desktop/facts_work/facts_v2/fittedismip-gris/data/output:/mnt/fittedismip_gris_data_out \
+-v /path/to/data/input:/mnt/fittedismip_gris_data_input:ro \
+-v /path/to/data/output:/mnt/fittedismip_gris_data_out \
 fittedismip-gris \
 --climate-file /mnt/fittedismip_gris_data_input/climate.nc \
 --gris-parm-file /mnt/fittedismip_gris_data_input/FittedParms_GrIS_ALL.csv \
