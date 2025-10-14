@@ -18,7 +18,9 @@ Where $s$ indicates the sea-level equivalent contribution in mm, $T$ is GSAT in 
 Clone the repository and create directories to hold input and output data. 
 
 ```shell
-git clone git@github.com:fact-sealevel/fittedismip-gris.git
+#git clone git@github.com:fact-sealevel/fittedismip-gris.git
+# ^^ eventually, for now clone:
+git clone --single-branch --branch package git@github.com:e-marshall/fittedismip-gris.git
 ```
 
 Download input data using the following Zenodo records:
@@ -27,6 +29,8 @@ Download input data using the following Zenodo records:
 # Input data we will pass to the container
 mkdir -p ./data/input
 curl -sL https://zenodo.org/record/7478192/files/FittedISMIP_icesheet_fit_data.tgz | tar -zx -C ./data/input
+# Fingerprint input data for postprocessing step
+curl -sL https://zenodo.org/record/7478192/files/grd_fingerprints_data.tgz | tar -zx -C ./data/input
 
 echo "New_York	12	40.70	-74.01" > ./data/input/location.lst
 
@@ -40,6 +44,10 @@ docker build -t fittedismip-gris .
 ```
 
 Create a container based on the image (`docker run --rm`), mount volumes for both the input and output data sub-directories and set the working directory to the location of the app in the container (`-w`). Then, call the application, passing the desired input arguments and making sure that the paths for each input argument are relative to the mounted volumes. Replace the paths for each mounted volume with the location of `data/input/` and `data/output/` on your machine.
+
+>[!IMPORTANT]
+> This module **requires** a `climate.nc` file that is the output of the FACTS FAIR module, which is created outside of this prototype. Before running the example, manually move the file into `./data/input` and ensure that the filename matches that passed to `climate-file`.
+
 
 ```shell
 docker run --rm \
