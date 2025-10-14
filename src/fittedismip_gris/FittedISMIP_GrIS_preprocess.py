@@ -17,6 +17,7 @@ of this module within the same workflow.
 
 
 def FittedISMIP_preprocess_icesheet(scenario, tlm_flag, pipeline_id, climate_file):
+    """This function only works with tlm_flag = 1 currently. In this case, it loads FAIR output (climate.nc) instead of the 2 layer ssp h5 file."""
     # Load the two-layer model data?
     if tlm_flag != 0:
         # Load the data
@@ -32,7 +33,7 @@ def FittedISMIP_preprocess_icesheet(scenario, tlm_flag, pipeline_id, climate_fil
         temp_data = tlm_dict["samples"]
 
     else:
-        # Temperature file name
+        # Temperature file name. Keeping commmented out line bc not sure how the program accesses that file.
         # tempfile = os.path.join(os.path.dirname(__file__), "20201009_CLIMATE_FORCING.csv")
         tempfile = "./data/input/20201009_CLIMATE_FORCING.csv"
         # Load and filter the temperature data for this scenario
@@ -45,7 +46,7 @@ def FittedISMIP_preprocess_icesheet(scenario, tlm_flag, pipeline_id, climate_fil
         years = filtered_temp_data["years"]
         temp_data = filtered_temp_data["data"]
 
-        # Put preprocess data in dictionary
+    # Put preprocess data in dictionary
     output = {"years": years, "temp_data": temp_data, "scenario": scenario}
 
     return output

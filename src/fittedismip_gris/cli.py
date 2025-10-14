@@ -199,8 +199,6 @@ def main(
         pipeline_id=pipeline_id,
         climate_file=climate_file,
     )
-    preprocess_message = f"preprocess dict keys: {preprocess_dict.keys()}"
-    click.echo(preprocess_message)
 
     # Fit
     fit_dict = FittedISMIP_fit_icesheet(
@@ -211,8 +209,6 @@ def main(
         eais_parm_file=eais_parm_file,
         pen_parm_file=pen_parm_file,
     )
-    fit_message = f"fit dict keys: {fit_dict.keys()}"
-    click.echo(fit_message)
 
     # Project
     project_dict = FittedISMIP_project_icesheet(
@@ -230,8 +226,6 @@ def main(
         gris_global_out_file=gris_global_out_file,
     )
 
-    project_message = f"project dict keys: {project_dict.keys()}"
-    click.echo(project_message)
     # Postprocess
     FittedISMIP_postprocess_icesheet(
         projection_dict=project_dict,
