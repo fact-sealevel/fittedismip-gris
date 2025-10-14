@@ -100,7 +100,7 @@ def FittedISMIP_project_icesheet(
     # Zero out the temperature data to the base year (Fitted models have 0-forced intercept)
     baseyear_idx = np.flatnonzero(years == baseyear)
     if baseyear_idx.size == 0:
-        raise Exception(
+        raise ValueError(
             "baseyear is not found in temperature data. baseyear = {}".format(baseyear)
         )
     temp_data = temp_data - temp_data[:, baseyear_idx]

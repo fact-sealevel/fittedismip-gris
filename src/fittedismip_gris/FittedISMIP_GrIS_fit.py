@@ -16,7 +16,6 @@ of this module within the same workflow.
 
 
 def FittedISMIP_fit_icesheet(
-    preprocess_dict: dict,
     pipeline_id: str,
     gris_parm_file: str,
     wais_parm_file: str,

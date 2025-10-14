@@ -202,7 +202,6 @@ def main(
 
     # Fit
     fit_dict = FittedISMIP_fit_icesheet(
-        preprocess_dict=preprocess_dict,
         pipeline_id=pipeline_id,
         gris_parm_file=gris_parm_file,
         wais_parm_file=wais_parm_file,
