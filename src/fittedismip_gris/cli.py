@@ -14,7 +14,6 @@ from fittedismip_gris.FittedISMIP_GrIS_postprocess import (
 import click
 
 
-# locationfilename, chunksize, pipeline_id
 @click.command()
 @click.option(
     "--scenario",
@@ -35,8 +34,7 @@ import click
 @click.option(
     "--climate-file",
     envvar="FITTEDISMIP_GRIS_CLIMATE_FILE",
-    required=False,
-    # default = "/Users/emmamarshall/Desktop/facts_work/facts_v2/fittedismip-gris/data/input/fittedismip.ssp585.temperature.fair.temperature_climate.nc",
+    required=True, #true for now and must be a fair climate.nc
     help="NetCDF4/HDF5 file containing surface temperature data",
     type=str,
 )
@@ -117,7 +115,7 @@ import click
     "--cyear-end",
     envvar="FITTEDISMIP_GRIS_CYEAR_END",
     help="Constant rate calculation for projections ends at this year",
-    default=2100,  # following experiments config in f1
+    default=2100,  # following defaults in f1 project script. note, this is required to match f1 experiment results
     show_default=True,
     type=int,
 )
