@@ -190,6 +190,7 @@ def main(
     gris_global_out_file,
     gris_local_out_file,
 ):
+    click.echo("Hello from FittedISMIP-GrIS!")
     # Preprocess
     preprocess_dict = FittedISMIP_preprocess_icesheet(
         scenario=scenario,
