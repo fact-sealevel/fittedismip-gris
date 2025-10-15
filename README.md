@@ -76,7 +76,7 @@ Options:
   --tlm-flag INTEGER           Use two-layer model temperature trajectories
                                [default = 1, do not use]  [default: 1]
   --climate-file TEXT          NetCDF4/HDF5 file containing surface
-                               temperature data
+                               temperature data  [required]
   --pipeline-id TEXT           Unique identifier for this instance of the
                                module
   --gris-parm-file TEXT        File containing Greenland ice sheet model
