@@ -1,6 +1,6 @@
 # fittedismip-gris
 
-This module implemented the parametric fit to ISMIP6 Greenland Ice Sheet projections described in IPCC AR6 WG1 9.SM.4.4. As described therein:
+This module implementes the parametric fit to ISMIP6 Greenland Ice Sheet projections described in IPCC AR6 WG1 9.SM.4.4. As described therein:
 
 A polynomial fit to the ISMIP6 results is employed to calculate rates of change. The parametric fit is a cubic fit to temperature and a quadratic fit over time:
 
