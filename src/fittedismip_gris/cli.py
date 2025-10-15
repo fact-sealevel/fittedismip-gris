@@ -34,7 +34,7 @@ import click
 @click.option(
     "--climate-file",
     envvar="FITTEDISMIP_GRIS_CLIMATE_FILE",
-    required=True, #true for now and must be a fair climate.nc
+    required=True,  # true for now and must be a fair climate.nc
     help="NetCDF4/HDF5 file containing surface temperature data",
     type=str,
 )
