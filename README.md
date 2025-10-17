@@ -53,7 +53,7 @@ Create a container based on the image (`docker run --rm`), mount volumes for bot
 docker run --rm \
 -v /path/to/data/input:/mnt/fittedismip_gris_data_input:ro \
 -v /path/to/data/output:/mnt/fittedismip_gris_data_out \
-fittedismip-gris \
+ghcr.io/fact-sealevel/fittedismip-gris:edge \
 --climate-file /mnt/fittedismip_gris_data_input/climate.nc \
 --gris-parm-file /mnt/fittedismip_gris_data_input/FittedParms_GrIS_ALL.csv \
 --wais-parm-file /mnt/fittedismip_gris_data_input/FittedParms_AIS_WAIS.csv \
