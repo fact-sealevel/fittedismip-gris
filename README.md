@@ -118,7 +118,7 @@ docker run --rm fittedismip-gris --help
 You can build the container with Docker by running the following command from the repository root:
 
 ```shell
-docker build -t deconto21-ais .
+docker build -t fittedismip-gris .
 ```
 
 ## Results
