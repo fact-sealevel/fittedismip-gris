@@ -18,9 +18,7 @@ Where $s$ indicates the sea-level equivalent contribution in mm, $T$ is GSAT in 
 Clone the repository and create directories to hold input and output data. 
 
 ```shell
-#git clone git@github.com:fact-sealevel/fittedismip-gris.git
-# ^^ eventually, for now clone:
-git clone --single-branch --branch package git@github.com:e-marshall/fittedismip-gris.git
+git clone git@github.com:fact-sealevel/fittedismip-gris.git
 ```
 
 Download input data using the following Zenodo records:
