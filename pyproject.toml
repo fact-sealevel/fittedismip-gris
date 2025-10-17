@@ -1,0 +1,30 @@
+[project]
+name = "fittedismip-gris"
+version = "0.1.0"
+description = "This is a containerized application replicating the FACTS module that implements the parametric fit to ISMIP6 Greenland Ice Sheet projections described in IPCC AR6 WG1 9.SM.4.4."
+readme = "README.md"
+authors = [
+    { name = "Emma Marshall", email = "emarshall@rhg.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "click>=8.3.0",
+    "dask>=2025.9.1",
+    "h5py>=3.14.0",
+    "netcdf4>=1.7.2",
+    "numpy>=2.3.3",
+    "scipy>=1.16.2",
+    "xarray>=2025.10.1",
+]
+
+[project.scripts]
+fittedismip-gris = "fittedismip_gris.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.8.11,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.0",
+]
