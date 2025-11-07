@@ -36,11 +36,6 @@ echo "New_York	12	40.70	-74.01" > ./data/input/location.lst
 mkdir -p ./data/output
 ```
 
-From the root directory, create a docker image that we will use to run the application:
-```shell
-docker build -t fittedismip-gris .
-```
-
 Create a container based on the image (`docker run --rm`), mount volumes for both the input and output data sub-directories and set the working directory to the location of the app in the container (`-w`). Then, call the application, passing the desired input arguments and making sure that the paths for each input argument are relative to the mounted volumes. Replace the paths for each mounted volume with the location of `data/input/` and `data/output/` on your machine.
 
 >[!IMPORTANT]
@@ -51,7 +46,7 @@ Create a container based on the image (`docker run --rm`), mount volumes for bot
 docker run --rm \
 -v /path/to/data/input:/mnt/fittedismip_gris_data_input:ro \
 -v /path/to/data/output:/mnt/fittedismip_gris_data_out \
-ghcr.io/fact-sealevel/fittedismip-gris:edge \
+ghcr.io/fact-sealevel/fittedismip-gris:0.1.0 \
 --climate-file /mnt/fittedismip_gris_data_input/climate.nc \
 --gris-parm-file /mnt/fittedismip_gris_data_input/FittedParms_GrIS_ALL.csv \
 --wais-parm-file /mnt/fittedismip_gris_data_input/FittedParms_AIS_WAIS.csv \
