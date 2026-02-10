@@ -12,6 +12,10 @@ from fittedismip_gris.FittedISMIP_GrIS_postprocess import (
 )
 
 import click
+import logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 
 @click.command()
@@ -167,6 +171,11 @@ import click
     help="File name for local Greenland ice sheet projections",
     type=str,
 )
+@click.option(
+    "--debug/--no-debug",
+    default=False,
+    envvar="FITTEDISMIP_GRIS_DEBUG",
+)
 def main(
     scenario,
     tlm_flag,
@@ -189,17 +198,26 @@ def main(
     fp_dir,
     gris_global_out_file,
     gris_local_out_file,
+    debug,
 ):
     click.echo("Hello from FittedISMIP-GrIS!")
+    if debug:
+        logging.root.setLevel(logging.DEBUG)
+    else:
+        logging.root.setLevel(logging.INFO)
+
     # Preprocess
+    logger.info("Starting preprocessing step...")
     preprocess_dict = FittedISMIP_preprocess_icesheet(
         scenario=scenario,
         tlm_flag=tlm_flag,
         pipeline_id=pipeline_id,
         climate_file=climate_file,
     )
+    logger.info("Finished preprocessing step")
 
     # Fit
+    logger.info("Starting fitting step...")
     fit_dict = FittedISMIP_fit_icesheet(
         pipeline_id=pipeline_id,
         gris_parm_file=gris_parm_file,
@@ -207,8 +225,10 @@ def main(
         eais_parm_file=eais_parm_file,
         pen_parm_file=pen_parm_file,
     )
+    logger.info("Finished fitting step")
 
     # Project
+    logger.info("Starting projection step...")
     project_dict = FittedISMIP_project_icesheet(
         preprocess_dict=preprocess_dict,
         fit_dict=fit_dict,
@@ -223,8 +243,10 @@ def main(
         pipeline_id=pipeline_id,
         gris_global_out_file=gris_global_out_file,
     )
+    logger.info("Finished projection step")
 
     # Postprocess
+    logger.info("Starting postprocessing step...")
     FittedISMIP_postprocess_icesheet(
         projection_dict=project_dict,
         locationfile=locationfile,
@@ -233,3 +255,4 @@ def main(
         fpdir=fp_dir,
         gris_local_out_file=gris_local_out_file,
     )
+    logger.info("Finished postprocessing step")
