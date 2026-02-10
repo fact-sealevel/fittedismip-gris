@@ -6,8 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ## [0.1.1] - 2026-02-09 
 
 ### Added
-- Logging to CLI script ([PR 8](https://github.com/fact-sealevel/fittedismip-gris/pull/8), [@e-marshall](https://github.com/e-marshall))
-
+- Logging to CLI script & support for multiple architectures in container build ([PR 8](https://github.com/fact-sealevel/fittedismip-gris/pull/8), [@e-marshall](https://github.com/e-marshall))
 
 ## [0.1.0] - 2025-11-7
 - Initial module migration to new prototype app. ([PR 1](https://github.com/fact-sealevel/fittedismip-gris/pull/1))
