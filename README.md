@@ -41,15 +41,15 @@ docker run --rm \
 -v /path/to/data/input:/mnt/fittedismip_gris_data_input:ro \
 -v /path/to/data/output:/mnt/fittedismip_gris_data_out \
 ghcr.io/fact-sealevel/fittedismip-gris:0.1.0 \
---climate-file /mnt/fittedismip_gris_data_input/climate.nc \
+--climate-data-file /mnt/fittedismip_gris_data_input/climate.nc \
 --gris-parm-file /mnt/fittedismip_gris_data_input/FittedParms_GrIS_ALL.csv \
 --wais-parm-file /mnt/fittedismip_gris_data_input/FittedParms_AIS_WAIS.csv \
 --eais-parm-file /mnt/fittedismip_gris_data_input/FittedParms_AIS_EAIS.csv \
 --pen-parm-file /mnt/fittedismip_gris_data_input/FittedParms_AIS_PEN.csv \
 --gris-global-out-file /mnt/fittedismip_gris_data_out/gris_gslr.nc \
 --gris-local-out-file /mnt/fittedismip_gris_data_out/gris_lslr.nc \
---locationfile /mnt/fittedismip_gris_data_input/location.lst \
---fp-dir /mnt/fittedismip_gris_data_input/FPRINT
+--location-file /mnt/fittedismip_gris_data_input/location.lst \
+--fingerprint-dir /mnt/fittedismip_gris_data_input/FPRINT
 ```
 
 ## Features
@@ -62,7 +62,7 @@ Options:
                                ssp585]
   --tlm-flag INTEGER           Use two-layer model temperature trajectories
                                [default = 1, do not use]  [default: 1]
-  --climate-file TEXT          NetCDF4/HDF5 file containing surface
+  --climate-data-file TEXT          NetCDF4/HDF5 file containing surface
                                temperature data  [required]
   --pipeline-id TEXT           Unique identifier for this instance of the
                                module
@@ -85,11 +85,11 @@ Options:
   --baseyear INTEGER           Year to which projections are referenced
                                [default: 2005]
   --rngseed INTEGER            Random number generator seed  [default: 1234]
-  --locationfile TEXT          File that contains name, id, lat, and lon of
+  --location-file TEXT          File that contains name, id, lat, and lon of
                                points for localization
   --chunksize INTEGER          Number of locations to process at a time
                                [default: 50]
-  --fp-dir TEXT                Directory that contains fingerprint files
+  --fingerprint-dir TEXT                Directory that contains fingerprint files
   --gris-global-out-file TEXT  File name for global Greenland ice sheet
                                projections
   --gris-local-out-file TEXT   File name for local Greenland ice sheet
