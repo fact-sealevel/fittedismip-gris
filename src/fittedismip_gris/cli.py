@@ -212,7 +212,7 @@ def main(
         scenario=scenario,
         tlm_flag=tlm_flag,
         pipeline_id=pipeline_id,
-        climate_file=climate_file,
+        climate_file=climate_data_file,
     )
     logger.info("Finished preprocessing step")
 
@@ -249,10 +249,10 @@ def main(
     logger.info("Starting postprocessing step...")
     FittedISMIP_postprocess_icesheet(
         projection_dict=project_dict,
-        locationfile=locationfile,
+        locationfile=location_file,
         chunksize=chunksize,
         pipeline_id=pipeline_id,
-        fpdir=fp_dir,
+        fpdir=fingerprint_dir,
         gris_local_out_file=gris_local_out_file,
     )
     logger.info("Finished postprocessing step")
