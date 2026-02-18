@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased] 
 
+### Changed
+- Changed names of arguments in CLI script to match other modules (PR [10](https://github.com/fact-sealevel/fittedismip-gris/pull/10), [@e-marshall](https://github.com/e-marshall))
 
 
 ## [0.1.1] - 2026-02-09 
