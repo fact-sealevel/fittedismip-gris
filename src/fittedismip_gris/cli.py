@@ -36,8 +36,8 @@ logging.basicConfig(level=logging.INFO)
     type=int,
 )
 @click.option(
-    "--climate-file",
-    envvar="FITTEDISMIP_GRIS_CLIMATE_FILE",
+    "--climate-data-file",
+    envvar="FITTEDISMIP_GRIS_CLIMATE_DATA_FILE",
     required=True,  # true for now and must be a fair climate.nc
     help="NetCDF4/HDF5 file containing surface temperature data",
     type=str,
@@ -140,7 +140,7 @@ logging.basicConfig(level=logging.INFO)
     type=int,
 )
 @click.option(
-    "--locationfile",
+    "--location-file",
     type=str,
     help="File that contains name, id, lat, and lon of points for localization",
     envvar="FITTEDISMIP_GRIS_LOCATIONFILE",
@@ -154,8 +154,8 @@ logging.basicConfig(level=logging.INFO)
     envvar="FITTEDISMIP_GRIS_CHUNKSIZE",
 )
 @click.option(
-    "--fp-dir",
-    envvar="FITTEDISMIP_GRIS_FP_DIR",
+    "--fingerprint-dir",
+    envvar="FITTEDISMIP_GRIS_FINGERPRINT_DIR",
     help="Directory that contains fingerprint files",
     type=str,
 )
@@ -179,7 +179,7 @@ logging.basicConfig(level=logging.INFO)
 def main(
     scenario,
     tlm_flag,
-    climate_file,
+    climate_data_file,
     pipeline_id,
     gris_parm_file,
     wais_parm_file,
@@ -193,9 +193,9 @@ def main(
     cyear_end,
     baseyear,
     rngseed,
-    locationfile,
+    location_file,
     chunksize,
-    fp_dir,
+    fingerprint_dir,
     gris_global_out_file,
     gris_local_out_file,
     debug,
@@ -212,7 +212,7 @@ def main(
         scenario=scenario,
         tlm_flag=tlm_flag,
         pipeline_id=pipeline_id,
-        climate_file=climate_file,
+        climate_file=climate_data_file,
     )
     logger.info("Finished preprocessing step")
 
@@ -249,10 +249,10 @@ def main(
     logger.info("Starting postprocessing step...")
     FittedISMIP_postprocess_icesheet(
         projection_dict=project_dict,
-        locationfile=locationfile,
+        locationfile=location_file,
         chunksize=chunksize,
         pipeline_id=pipeline_id,
-        fpdir=fp_dir,
+        fpdir=fingerprint_dir,
         gris_local_out_file=gris_local_out_file,
     )
     logger.info("Finished postprocessing step")
